@@ -15,6 +15,10 @@
   p {
     display: none;
   }
+
+  span {
+    display: none;
+  }
 </style>
 
 <body>
@@ -23,6 +27,7 @@
     <button type="submit">отправь меня</button>
   </form>
   <p>Ожидайте, Ваш запрос обрабатывается</p>
+  <span>Что-то пошло не так</span>
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>
@@ -33,6 +38,7 @@
       const scriptURL =
         "https://script.google.com/macros/s/AKfycbxwDudxFeDcQMd8nsyajtt4pO4WEpmPZOzoiaayM64ZV5lVdk88ey8hfZ-3SkgBwHV1Nw/exec";
       const status = document.querySelector('p')
+      const err = document.querySelector('span')
       $(ID_FORM).submit(function (e) {
         e.preventDefault();
         status.classList.add('active')
@@ -56,6 +62,9 @@
             link.setAttribute("target", "_blank");
             link.textContent = "Открой меня";
             document.querySelector("body").appendChild(link);
+          }).catch(e => {
+            console.error(err)
+            err.classList.add('active')
           });
       });
     });
