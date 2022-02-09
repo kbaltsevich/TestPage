@@ -20,9 +20,37 @@
       setTimeout(() => {
         const ID_FORM = "form";
         const form = document.querySelector(ID_FORM);
+        const ID_SUBMIT_BUTTON = ''
+        const submitButton = document.querySelector(ID_SUBMIT_BUTTON)
         const scriptURL =
           "https://script.google.com/macros/s/AKfycbxwDudxFeDcQMd8nsyajtt4pO4WEpmPZOzoiaayM64ZV5lVdk88ey8hfZ-3SkgBwHV1Nw/exec";
-        $(ID_FORM).submit(function (e) {
+        //для отслеживания сабмита формы
+        // $(ID_FORM).submit(function (e) {
+        //   e.preventDefault();
+        //   fetch(scriptURL, {
+        //     method: "POST",
+        //     body: new FormData(form),
+        //   })
+        //     .then((response) => {
+        //       console.log(response)
+        //       return response.json();
+        //     })
+        //     .then((data) => {
+        //       console.log(data);
+        //       return data.url;
+        //     })
+        //     .then((url) => {
+        //       var link = document.createElement("a");
+        //       link.setAttribute("href", url);
+        //       link.setAttribute("download", url);
+        //       link.setAttribute("target", "_blank");
+        //       link.textContent = "Открой меня";
+        //       document.querySelector("body").appendChild(link);
+        //     }).catch(err => console.log(`ERROR!!!!!!!! ${err}`));
+        // });
+        //евент клика на кнопку отправить
+        $(ID_SUBMIT_BUTTON).click(function (e) {
+          form.preventDefault()
           e.preventDefault();
           fetch(scriptURL, {
             method: "POST",
@@ -43,9 +71,10 @@
               link.setAttribute("target", "_blank");
               link.textContent = "Открой меня";
               document.querySelector("body").appendChild(link);
-            });
+            }).catch(err => console.log(`ERROR!!!!!!!! ${err}`));;
         });
       }, 2000);
+
     });
   </script>
 </body>
